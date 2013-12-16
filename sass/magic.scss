@@ -1,0 +1,33 @@
+/*Clearfix mixin*/
+
+@mixin cf {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  @include has-layout;
+}
+
+// Some helper classes
+
+.fll {
+  float: left;
+}
+
+.flr {
+  float: right;
+}
+
+.fln {
+  float: none;
+}
+
+.cb {
+  clear: both;
+}

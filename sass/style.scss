@@ -1,0 +1,81 @@
+@import "compass";
+@import "climacons-font.scss";
+@import "normalize.scss";
+@import "magic.scss";
+
+$bgc: #222426;
+
+// Need them responsive images
+img {
+  max-width: 100%;
+}
+
+body {
+  color: #fff;
+  background-color: $bgc;
+  font-family: HelveticaNeue-UltraLight, 'Helvetica Neue UltraLight', 'Helvetica Neue', Open-Light, sans-serif;
+}
+
+.main-wrap {
+  width: 820px;
+  margin: 3em auto;
+}
+
+.time {
+  margin: 1em 0 0.5em 0;
+  font-size: 186px;
+  text-align: center;
+
+  .date {
+    display: block;
+    font-size: 22px;
+  }
+}
+
+.forecast {
+  @include cf;
+  text-align: center;
+
+  .forecast-col {
+    width: 20%;
+    float: left;
+
+
+    &.today {
+
+      .temp {
+        font-size: 42px;
+      }
+
+      .climacon {
+        font-size: 96px;
+        line-height: 1;
+      }
+
+      .day-label {
+        font-size: 24px;
+      }
+    }
+
+    .temp {
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    .climacon {
+      display: block;
+      font-size: 82px;
+    }
+
+    .day-label {
+      font-size: 20px;
+    }
+  }
+
+}
+
+.city {
+  margin: 3em 0;
+  text-align: center;
+}
+

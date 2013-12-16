@@ -1,0 +1,8 @@
+magic.css
+node_modules
+.sass-cache
+.html-validation-report.json
+.html-validation.json
+.idea
+.DS_Store
+__MACOSX/
