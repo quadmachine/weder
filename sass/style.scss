@@ -4,16 +4,21 @@
 @import "magic.scss";
 
 $bgc: #222426;
+$fade: #646464;
 
 // Need them responsive images
 img {
   max-width: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  color: #fff;
+  color: #D1D1D1;
   background-color: $bgc;
-  font-family: HelveticaNeue-UltraLight, 'Helvetica Neue UltraLight', 'Helvetica Neue', Open-Light, sans-serif;
+  font-family: 'Helvetica Neue', "Helvetica", "Arial", sans-serif;
 }
 
 .main-wrap {
@@ -22,14 +27,21 @@ body {
 }
 
 .time {
-  margin: 1em 0 0.5em 0;
+  margin: 1em 0 0.25em 0;
   font-size: 186px;
   text-align: center;
+  font-weight: 100;
 
   .date {
     display: block;
-    font-size: 22px;
   }
+}
+
+.time .date,
+.city {
+  font-size: 22px;
+  font-weight: 200;
+  color: $fade;
 }
 
 .forecast {
@@ -38,28 +50,11 @@ body {
 
   .forecast-col {
     width: 20%;
+    padding: 0 2.5%;
     float: left;
 
-
-    &.today {
-
-      .temp {
-        font-size: 42px;
-      }
-
-      .climacon {
-        font-size: 96px;
-        line-height: 1;
-      }
-
-      .day-label {
-        font-size: 24px;
-      }
-    }
-
-    .temp {
-      font-size: 32px;
-      font-weight: 600;
+    &:not(.today) {
+      margin-top: 66px;
     }
 
     .climacon {
@@ -67,8 +62,47 @@ body {
       font-size: 82px;
     }
 
+    .temp {
+      @include cf;
+      width: 50%;
+      margin: -5px auto 5px auto;
+      font-size: 24px;
+
+      .high,
+      .low {
+        width: 50%;
+        white-space: nowrap;
+      }
+
+      .high {
+       float: left;
+      }
+
+      .low {
+        float: right;
+        color: $fade;
+      }
+    }
+
     .day-label {
       font-size: 20px;
+      font-weight: 200;
+    }
+
+    &.today {
+
+      .climacon {
+        font-size: 168px;
+        line-height: 1;
+      }
+
+      .temp {
+        font-size: 44px;
+      }
+
+      .day-label {
+        font-size: 24px;
+      }
     }
   }
 
@@ -77,5 +111,13 @@ body {
 .city {
   margin: 3em 0;
   text-align: center;
+}
+
+.main-footer {
+  padding: 0 2.5%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 

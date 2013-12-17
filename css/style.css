@@ -1045,43 +1045,60 @@ table {
   clear: both;
 }
 
-/* line 9, ../sass/style.scss */
+/* line 10, ../sass/style.scss */
 
 img {
   max-width: 100%;
 }
 
-/* line 13, ../sass/style.scss */
+/* line 14, ../sass/style.scss */
 
-body {
-  color: #fff;
-  background-color: #222426;
-  font-family: HelveticaNeue-UltraLight, 'Helvetica Neue UltraLight', 'Helvetica Neue', Open-Light, sans-serif;
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* line 19, ../sass/style.scss */
+/* line 18, ../sass/style.scss */
+
+body {
+  color: #D1D1D1;
+  background-color: #222426;
+  font-family: 'Helvetica Neue', "Helvetica", "Arial", sans-serif;
+}
+
+/* line 24, ../sass/style.scss */
 
 .main-wrap {
   width: 820px;
   margin: 3em auto;
 }
 
-/* line 24, ../sass/style.scss */
-
-.time {
-  margin: 1em 0 0.5em 0;
-  font-size: 186px;
-  text-align: center;
-}
-
 /* line 29, ../sass/style.scss */
 
-.time .date {
-  display: block;
-  font-size: 22px;
+.time {
+  margin: 1em 0 0.25em 0;
+  font-size: 186px;
+  text-align: center;
+  font-weight: 100;
 }
 
 /* line 35, ../sass/style.scss */
+
+.time .date {
+  display: block;
+}
+
+/* line 41, ../sass/style.scss */
+
+.time .date,
+.city {
+  font-size: 22px;
+  font-weight: 200;
+  color: #646464;
+}
+
+/* line 47, ../sass/style.scss */
 
 .forecast {
   *zoom: 1;
@@ -1102,55 +1119,110 @@ body {
   clear: both;
 }
 
-/* line 39, ../sass/style.scss */
+/* line 51, ../sass/style.scss */
 
 .forecast .forecast-col {
   width: 20%;
+  padding: 0 2.5%;
   float: left;
 }
 
-/* line 46, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 
-.forecast .forecast-col.today .temp {
-  font-size: 42px;
-}
-
-/* line 50, ../sass/style.scss */
-
-.forecast .forecast-col.today .climacon {
-  font-size: 96px;
-  line-height: 1;
-}
-
-/* line 55, ../sass/style.scss */
-
-.forecast .forecast-col.today .day-label {
-  font-size: 24px;
+.forecast .forecast-col:not(.today) {
+  margin-top: 66px;
 }
 
 /* line 60, ../sass/style.scss */
-
-.forecast .forecast-col .temp {
-  font-size: 32px;
-  font-weight: 600;
-}
-
-/* line 65, ../sass/style.scss */
 
 .forecast .forecast-col .climacon {
   display: block;
   font-size: 82px;
 }
 
-/* line 70, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 
-.forecast .forecast-col .day-label {
-  font-size: 20px;
+.forecast .forecast-col .temp {
+  *zoom: 1;
+  width: 50%;
+  margin: -5px auto 5px auto;
+  font-size: 24px;
+}
+
+/* line 5, ../sass/magic.scss */
+
+.forecast .forecast-col .temp:before,
+.forecast .forecast-col .temp:after {
+  content: " ";
+  display: table;
+}
+
+/* line 10, ../sass/magic.scss */
+
+.forecast .forecast-col .temp:after {
+  clear: both;
+}
+
+/* line 72, ../sass/style.scss */
+
+.forecast .forecast-col .temp .high,
+.forecast .forecast-col .temp .low {
+  width: 50%;
+  white-space: nowrap;
 }
 
 /* line 77, ../sass/style.scss */
 
+.forecast .forecast-col .temp .high {
+  float: left;
+}
+
+/* line 81, ../sass/style.scss */
+
+.forecast .forecast-col .temp .low {
+  float: right;
+  color: #646464;
+}
+
+/* line 87, ../sass/style.scss */
+
+.forecast .forecast-col .day-label {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+/* line 94, ../sass/style.scss */
+
+.forecast .forecast-col.today .climacon {
+  font-size: 168px;
+  line-height: 1;
+}
+
+/* line 99, ../sass/style.scss */
+
+.forecast .forecast-col.today .temp {
+  font-size: 44px;
+}
+
+/* line 103, ../sass/style.scss */
+
+.forecast .forecast-col.today .day-label {
+  font-size: 24px;
+}
+
+/* line 111, ../sass/style.scss */
+
 .city {
   margin: 3em 0;
   text-align: center;
+}
+
+/* line 116, ../sass/style.scss */
+
+.main-footer {
+  padding: 0 2.5%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
