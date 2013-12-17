@@ -15,7 +15,13 @@ img {
   box-sizing: border-box;
 }
 
+html,
 body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
   color: #D1D1D1;
   background-color: $bgc;
   font-family: 'Helvetica Neue', "Helvetica", "Arial", sans-serif;
@@ -55,6 +61,26 @@ body {
 
     &:not(.today) {
       margin-top: 66px;
+    }
+
+    &:nth-child(1){
+      animation-delay: 0.1s;
+    }
+
+    &:nth-child(2){
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3){
+      animation-delay: 0.3s;
+    }
+
+    &:nth-child(4){
+      animation-delay: 0.4s;
+    }
+
+    &:nth-child(5){
+      animation-delay: 0.5s;
     }
 
     .climacon {
@@ -113,6 +139,50 @@ body {
   text-align: center;
 }
 
+// Loader
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 180px;
+  text-align: center;
+  color: #161616;
+
+  .compass-wrap {
+    width: 192px;
+    height: 192px;
+    margin: -112px 0 0 -40px;
+    display: table-cell;
+    vertical-align: middle;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index: 999;
+
+    .compass {
+      width: 80px;
+      height: 192px;
+      display: none;
+      position: absolute;
+      line-height: 1;
+
+      &.animated {
+        display: block;
+      }
+
+      &.rotate {
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 0.6s;
+      }
+    }
+  }
+}
+
 .main-footer {
   padding: 0 2.5%;
   position: absolute;
@@ -121,3 +191,15 @@ body {
   left: 0;
 }
 
+
+@import "animate.scss";
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation-name: rotate;
+}

@@ -7,7 +7,8 @@ $(window).load(function() {
     'clear': 'sun',
     'nt_clear': 'moon',
     'partlycloudy': 'cloud',
-    'mostlycloudy': 'cloud'
+    'mostlycloudy': 'cloud',
+    'snow': 'snow'
   };
 
   var location = 'Zagreb';
@@ -21,7 +22,9 @@ $(window).load(function() {
       hours: $('.hours'),
       date: $('.date'),
       today: $('.today'),
-      city: $('.city')
+      city: $('.city'),
+      loader: $('.loader .compass'),
+      time: $('.time')
     },
     displayTimeDate: function(){
       var today = new Date();
@@ -33,7 +36,6 @@ $(window).load(function() {
     },
     refreshData: function(){
       $.ajax({
-        // url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + location + '&mode=json&units=metric&cnt=5',
         url: 'http://api.wunderground.com/api/f73f87cbdbefb320/conditions/geolookup/forecast10day/q/' + Weather.pos.coords.latitude + ',' + Weather.pos.coords.longitude + '.json',
         success: function(data){
           weather_data = {
@@ -49,12 +51,25 @@ $(window).load(function() {
         dataType: 'jsonp'
       });
     },
+    running: false,
     update: function(data){
       console.log(data);
-      Weather.displayTimeDate();
+      if (!Weather.running){
+        Weather.displayTimeDate();
+        Weather.el.time.addClass('animated fadeInDown');
+      }
+
+      if (Weather.el.loader.hasClass('animated')){
+        Weather.el.loader.removeClass('rotate').addClass('rotateOut');
+      }
 
       Weather.el.today.find('.temp').text(data.current_observation.feelslike_c);
+      Weather.el.today.find('.day-label').text('Now');
       Weather.el.today.find('.climacon').addClass(icons[data.current_observation.icon]);
+
+      if (!Weather.running){
+        Weather.el.today.addClass('animated bounceIn');
+      }
 
       var forecast = data.forecast.simpleforecast.forecastday;
 
@@ -66,18 +81,25 @@ $(window).load(function() {
         $el.find('.temp').html('<span class="high">' + forecast[i].high.celsius + '</span><span class="low">' + forecast[i].low.celsius + '</span>');
         $el.find('.climacon').addClass(icons[forecast[i].icon]);
         $el.find('.day-label').text(forecast[i].date.weekday);
+        if (!Weather.running){
+          $el.addClass('animated fadeInUp');
+        }
       }
 
       Weather.el.city.text(data.location.city + ', ' + data.location.country_name);
+      Weather.running = true;
     },
     init: function(){
+      // First start, get user position and weather data
       if (!window.localStorage.getItem('weather')){
+        Weather.el.loader.addClass('animated rotate');
         navigator.geolocation.getCurrentPosition(function(pos){
           console.log('getting user position');
           Weather.pos = pos;
           Weather.refreshData();
         });
       }
+      // Weather data cached
       else {
         weather_data = JSON.parse(window.localStorage.getItem('weather'));
         var cached_time = new Date(weather_data.timestamp);
@@ -85,6 +107,7 @@ $(window).load(function() {
 
         if (now - cached_time > 3600000){ //cached data older than 1hr, 3600000ms
           console.log('refresh');
+          Weather.el.loader.addClass('animated rotate');
           Weather.pos = weather_data.pos;
           Weather.refreshData();
         }
