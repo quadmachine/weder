@@ -1087,7 +1087,7 @@ body {
 /* line 35, ../sass/style.scss */
 
 .time {
-  margin: 1em 0 0.25em 0;
+  margin: 0;
   font-size: 186px;
   text-align: center;
   font-weight: 100;
@@ -1569,4 +1569,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .rotate {
   -webkit-animation-name: rotate;
   animation-name: rotate;
+}
+
+@media only screen and (min-height: 900px) {
+  /* line 208, ../sass/style.scss */
+
+  .time {
+    margin: 1em 0 0.25em 0;
+  }
 }

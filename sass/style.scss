@@ -33,7 +33,7 @@ body {
 }
 
 .time {
-  margin: 1em 0 0.25em 0;
+  margin: 0;
   font-size: 186px;
   text-align: center;
   font-weight: 100;
@@ -202,4 +202,10 @@ body {
 
 .rotate {
   animation-name: rotate;
+}
+
+@media only screen and (min-height: 900px) {
+  .time {
+     margin: 1em 0 0.25em 0;
+  }
 }

@@ -6,6 +6,7 @@ $(window).load(function() {
     'fog': 'haze',
     'clear': 'sun',
     'nt_clear': 'moon',
+    'cloudy': 'cloud',
     'partlycloudy': 'cloud',
     'mostlycloudy': 'cloud',
     'snow': 'snow'
@@ -13,6 +14,7 @@ $(window).load(function() {
 
   var location = 'Zagreb';
   var weather_data;
+  var refresh_interval = 3600000;
 
   var Weather = {
     el: {
@@ -105,7 +107,7 @@ $(window).load(function() {
         var cached_time = new Date(weather_data.timestamp);
         var now = new Date();
 
-        if (now - cached_time > 3600000){ //cached data older than 1hr, 3600000ms
+        if (now - cached_time > refresh_interval){ //cached data older than 1hr, 3600000ms
           console.log('refresh');
           Weather.el.loader.addClass('animated rotate');
           Weather.pos = weather_data.pos;
@@ -116,6 +118,8 @@ $(window).load(function() {
           Weather.update(weather_data.data);
         }
       }
+      //Refresh weather data, +1000ms to make sure it doesn't use data from localstorage
+      window.setTimeout(Weather.init, refresh_interval+1000);
     }
   };
 
